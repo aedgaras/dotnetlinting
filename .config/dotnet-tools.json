@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "husky": {
+      "version": "0.6.3",
+      "commands": [
+        "husky"
+      ]
+    },
+    "jetbrains.resharper.globaltools": {
+      "version": "2023.2.3",
+      "commands": [
+        "jb"
+      ]
+    },
+    "xamlstyler.console": {
+      "version": "3.2311.2",
+      "commands": [
+        "xstyler"
+      ]
+    }
+  }
+}

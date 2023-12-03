@@ -1,0 +1,56 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# STEP 1 - Verify if project has conding format done right.
+dotnet format --verify-no-changes
+
+# STEP 2 - Format project xaml files with XAMLStyler.
+
+# XAML Styler - xstyler.exe pre-commit Git Hook
+# Documentation: https://github.com/Xavalon/XamlStyler/wiki
+
+# Define path to xstyler.exe
+XSTYLER_PATH=
+
+# Define path to XAML Styler configuration
+XSTYLER_CONFIG=
+
+# Define path to copy original XAML files as backup
+BACKUP_PATH=~/Documents/XamlStyler/Backup
+
+echo "Running XAML Styler on committed XAML files"
+git diff --cached --name-only --diff-filter=ACM  | grep -e '\.xaml$' | \
+# Wrap in brackets to preserve variable through loop
+{
+    # Setup XAML file backup
+    if [ -n "$BACKUP_PATH" ]; then
+        echo "Backing up XAML files to: $BACKUP_PATH"
+        BACKUP_PATH="$BACKUP_PATH/$(date +"%Y-%m-%d_%H-%M-%S")/"
+    fi
+
+    files=""
+    # Build list of files to pass to xstyler.exe
+    while read FILE; do
+        if [ "$files" == "" ]; then
+            files="$FILE";
+            mkdir -p $BACKUP_PATH
+        else
+            files="$files,$FILE";
+        fi
+
+        if [ -n "$BACKUP_PATH" ]; then
+            cp -r --parents $FILE $BACKUP_PATH
+        fi
+    done
+
+    if [ "$files" != "" ]; then
+        # Check if external configuration is specified
+        [ -z "$XSTYLER_CONFIG" ] && configParam="" || configParam="-c $XSTYLER_CONFIG"
+
+        # Format XAML files
+        $XSTYLER_PATH -f "$files" $configParam
+        git add -u
+    else
+        echo "No XAML files detected in commit"
+    fi
+}
