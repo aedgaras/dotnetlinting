@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedLintAndFormat", "AutomatedLintAndFormat\AutomatedLintAndFormat.csproj", "{8354D0F1-C85B-4171-AF2F-AFF30F34EA62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8354D0F1-C85B-4171-AF2F-AFF30F34EA62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8354D0F1-C85B-4171-AF2F-AFF30F34EA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8354D0F1-C85B-4171-AF2F-AFF30F34EA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8354D0F1-C85B-4171-AF2F-AFF30F34EA62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
